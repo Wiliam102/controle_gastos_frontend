@@ -54,31 +54,74 @@ h2{
     color: rgb(83, 83, 83);
     padding: 10px;
 }
-form{
+/* Estilo do formulário */
+form {
     width: 500px;
-    height: 400px;
+    padding: 20px; /* Adiciona espaçamento interno */
     background-color: white;
-    margin: 15px;
+    margin: 20px; /* Centraliza o formulário horizontalmente */
     border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar o formulário */
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+    gap: 15px; /* Espaçamento entre os elementos */
 }
-label{
-    padding: 5px;
+
+/* Estilo dos rótulos */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilo dos campos de entrada */
+input, textarea {
+    padding: 10px;
+    width: calc(100% - 20px); /* Ocupa a largura do formulário menos o padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Espaçamento adicional para o botão */
+form > button {
+    align-self: center; /* Alinha o botão à esquerda */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+form > button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo do botão fechar */
+#fechar {
+    align-self: center; /* Centraliza o botão fechar */
+    margin-bottom: 0;
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 50%;
+    background-color: transparent;
+}
+
+#fechar:hover {
+    background-color: #e04d51;
+}
+
+.tabelaCategorias{
+    width:50%;
+}
+select{
     margin-left: 5px;
-    margin-top: 10px;
-}
-input{
-    padding: 8px;
-    width: 300px;
-    margin:10px;
-}
-form > button{
-    margin-left: 20px;
-    margin-top: 20px;
-}
-textarea{
-    margin: 10px;
-}
-#fechar{
-    margin-left: 45%;
-    margin-bottom: 0%;
+    padding: 6px;
 }

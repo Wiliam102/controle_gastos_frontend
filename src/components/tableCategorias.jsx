@@ -1,12 +1,29 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 
-const TableCategorias = ({ data, onAdd }) => {
+const TableCategorias = ({ onAdd }) => {
+  const [data,setData] = useState([])
+
+  const fetchCategorias = async ()=>{
+    try{
+      const response = await fetch("http://localhost:8080/category/findall");
+      if(!response.ok){
+        throw new Error("Erro ao buscar categoria");
+      }
+      const result = await response.json();
+      setData(result);
+
+    }catch(error){
+      console.error("Erro:", error);
+
+    }
+  };
+
+  useEffect(()=>{
+    fetchCategorias();
+  },[])
   return (
     <div>
-      <button onClick={onAdd}>
-        Adicionar Categoria
-      </button>
-      <table className="tabela">
+      <table className="tabela tabelaCategorias">
         <thead>
           <tr>
             <th>ID</th>

@@ -67,7 +67,7 @@ const Form = ({ onSubmit }) => {
         <label>
           Categoria:
           <select
-            name="categoria"
+            name="Categoria"
             value={formData.categoria}
             onChange={handleChange}
           >
