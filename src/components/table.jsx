@@ -1,9 +1,10 @@
 import React from "react";
+import '../css/style.css'
 
 const Table = ({data,onEdit,onDelete}) =>{
     return(
-        <table border="1px" style={{width:'100%', borderCollapse:'colapse'}}>
-            <tr style={{backgroundColor:'white'}}>
+        <table className="tabela">
+            <tr>
                 <th>Id</th>
                 <th>Valor</th>
                 <th>Data</th>

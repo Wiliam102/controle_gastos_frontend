@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../css/style.css'
 
 const Form = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -51,26 +52,24 @@ const Form = ({ onSubmit }) => {
           />
         </label>
       </div>
-      <div style={{ marginBottom: "10px" }}>
-        <label>
-          Descrição:
-          <input
-            type="text"
-            name="descricao"
-            value={formData.descricao}
-            onChange={handleChange}
-            style={{ marginLeft: "10px" }}
-          />
-        </label>
+      <div>
+        <label> Descrição: </label><br />
+          
+          <textarea name="message" rows={5} cols={40} value={formData.descricao}
+            onChange={handleChange}>
+
+          </textarea>
+             
+  
+       
       </div>
-      <div style={{ marginBottom: "10px" }}>
+      <div>
         <label>
           Categoria:
           <select
             name="categoria"
             value={formData.categoria}
             onChange={handleChange}
-            style={{ marginLeft: "10px" }}
           >
             <option value="">Selecione</option>
             <option value="alimentacao">Alimentação</option>
@@ -80,7 +79,7 @@ const Form = ({ onSubmit }) => {
           </select>
         </label>
       </div>
-      <button type="submit" style={{ padding: "10px 20px", cursor: "pointer" }}>
+      <button type="submit">
         Enviar
       </button>
     </form>

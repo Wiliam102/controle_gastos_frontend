@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "../components/form"; // Importa o componente Form
 import Table from "../components/table"; // Importa o componente Table
 import TableCategorias from "../components/tableCategorias";
+import closeIcon from '../assets/x.png'
 
 const Home = () => {
   const [data, setData] = useState([]); // Dados da tabela
@@ -15,27 +16,9 @@ const Home = () => {
   return (
     <div>
       {/* Cabeçalho com link para categorias */}
-      <header
-        style={{
-          padding: "10px 20px",
-          backgroundColor: " #4A90E2",
-          color: "white",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <header>
         <h1>Gestão de gastos</h1>
-        <a
-          href="#categorias"
-          style={{
-            color: "white",
-            textDecoration: "none",
-            fontSize: "16px",
-          }}
-        >
-          Categorias
-        </a>
+        <a href="#categorias">Categorias</a>
       </header>
 
       {/* Conteúdo principal */}
@@ -43,16 +26,6 @@ const Home = () => {
         {/* Botão para mostrar o formulário */}
         <button
           onClick={() => setShowForm(true)}
-          style={{
-            padding: "10px 20px",
-            marginBottom: "20px",
-            cursor: "pointer",
-            backgroundColor: "#4A90e2",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            fontSize:"15px",
-          }}
         >
           Adicionar
         </button>
@@ -60,29 +33,12 @@ const Home = () => {
         {/* Formulário com controle de visibilidade */}
         {showForm && (
           <div
-            style={{
-              marginBottom: "20px",
-              padding: "20px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              backgroundColor: "#f9f9f9",
-              width:"600px",
-              height:"400px"
-            }}
           >
-            <button
+            <button id="fechar"
               onClick={() => setShowForm(false)}
-              style={{
-                float: "right",
-                cursor: "pointer",
-                backgroundColor: "#f44336",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                padding: "5px 10px",
-              }}
+             
             >
-              Fechar
+             fechar
             </button>
             <Form onSubmit={handleAddData} />
           </div>
@@ -98,7 +54,7 @@ const Home = () => {
         />
 
         {/* Seção de Categorias */}
-        <section id="categorias" style={{ marginTop: "40px" }}>
+        <section id="categorias">
           <h2>Categorias</h2>
           <TableCategorias
           data={data}/>
