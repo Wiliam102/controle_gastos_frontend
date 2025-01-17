@@ -1,41 +1,36 @@
-import React, { useState } from "react";
-import Form from "../components/formGasto"; // Importa o componente Form de gasto
-import Table from "../components/table"; // Importa o componente Table
-import TableCategorias from "../components/tableCategorias"; // Importa o componente TableCategorias
-import CategoriaForm from "../components/formCategoria"; // Importa o componente FormCategoria
-import closeIcon from '../assets/x.png';
+import React, { useState, useRef } from "react";
+import Form from "../components/formGasto"; // Formulário de gastos
+import TableCategorias from "../components/tableCategorias"; // Tabela de categorias
+import TableGasto from "../components/tableGasto.jsx"; // Tabela de gastos
+import CategoriaForm from "../components/formCategoria"; // Formulário de categorias
+import closeIcon from "../assets/x.png";
 
 const Home = () => {
-  const [data, setData] = useState([]); // Dados da tabela
-  const [showFormGasto, setShowFormGasto] = useState(false); // Controle de visibilidade do formulário de gasto
-  const [showFormCategoria, setShowFormCategoria] = useState(false); // Controle de visibilidade do formulário de categoria
+  const [showFormGasto, setShowFormGasto] = useState(false); // Controle do formulário de gasto
+  const [showFormCategoria, setShowFormCategoria] = useState(false); // Controle do formulário de categoria
+  const tableCategoriasRef = useRef(null); // Referência para o componente TableCategorias
 
-  // Adiciona novos dados à tabela
-  const handleAddData = (newData) => {
-    setData([...data, newData]);
-  };
-
-  // Função para adicionar uma categoria (ajustar conforme a lógica de envio de dados)
-  const handleAddCategoria = (categoria) => {
-    setData([...data, categoria]);
+  // Atualiza a tabela de categorias ao salvar uma nova categoria
+  const handleCategoriaSuccess = () => {
+    if (tableCategoriasRef.current) {
+      tableCategoriasRef.current.fetchCategorias(); // Atualiza a tabela chamando a função do componente
+    }
   };
 
   return (
     <div>
-      {/* Cabeçalho com link para categorias */}
       <header>
-        <h1>Gestão de gastos</h1>
+        <h1>Gestão de Gastos</h1>
         <a href="#categorias">Categorias</a>
       </header>
 
-      {/* Conteúdo principal */}
-      <main style={{ padding: "20px" }}>
+      <main>
         {/* Botão para mostrar o formulário de gasto */}
+        <section id="container-gastos">
         <button
           onClick={() => setShowFormGasto(true)}
-          style={{ marginBottom: "20px" }}
         >
-          Registrar gasto
+          Registrar Gasto
         </button>
 
         {/* Formulário de Gasto */}
@@ -44,59 +39,47 @@ const Home = () => {
             <button
               id="fechar"
               onClick={() => setShowFormGasto(false)}
-              style={{
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
             >
-              <img src={closeIcon} alt="Fechar" style={{ width: "20px", height: "20px" }} />
+              <img
+                src={closeIcon}
+                alt="Fechar"
+              />
             </button>
-            <Form onSubmit={handleAddData} />
+            <Form />
           </div>
         )}
+        <TableGasto/>
 
+        </section>
         
-        
-
-        {/* Formulário de Categoria */}
-        {showFormCategoria && (
-          <div>
-            <button
-              id="fechar"
-              onClick={() => setShowFormCategoria(false)}
-              style={{
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <img src={closeIcon} alt="Fechar" style={{ width: "20px", height: "20px" }} />
-            </button>
-            <CategoriaForm onSubmit={handleAddCategoria} />
-          </div>
-        )}
-
-        {/* Tabela para exibir os dados */}
-        <Table
-          data={data}
-          onEdit={(id) => alert(`Editar item com ID: ${id}`)}
-          onDelete={(id) =>
-            setData(data.filter((item) => item.id !== id))
-          }
-        />
-
         {/* Seção de Categorias */}
-        <section id="categorias">
-          <h2>Categorias</h2>
-          {/*botao para mostrar formulario de categoria */}
+        <section id="container-categorias">
+          <h2 style={{marginTop:'20px'}}>Categorias</h2>
           <button
-          onClick={() => setShowFormCategoria(true)}
-          style={{ marginBottom: "20px" }}
-        >
-          Adicionar Categoria
-        </button>
-          <TableCategorias data={data} />
+            onClick={() => setShowFormCategoria(true)}
+            style={{margin:"10px"}}
+          >
+            Adicionar Categoria
+          </button>
+
+          {/* Formulário de Categoria */}
+          {showFormCategoria && (
+            <div>
+              <button
+                id="fechar"
+                onClick={() => setShowFormCategoria(false)}
+              >
+                <img
+                  src={closeIcon}
+                  alt="Fechar"
+                />
+              </button>
+              <CategoriaForm onSuccess={handleCategoriaSuccess} />
+            </div>
+          )}
+
+          {/* Tabela de Categorias */}
+          <TableCategorias ref={tableCategoriasRef}/>
         </section>
       </main>
     </div>
@@ -104,3 +87,4 @@ const Home = () => {
 };
 
 export default Home;
+

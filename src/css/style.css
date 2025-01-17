@@ -1,25 +1,40 @@
-body{
-    height: 100vh;
-    width: 100vw;
+
+/* Estilização do container principal */
+main {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
-header{
+
+/* Header responsivo */
+header {
     width: 100%;
     display: flex;
-    padding:20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Permite que os elementos se ajustem em telas menores */
+    align-items: center;
     justify-content: space-between;
+    padding: 20px;
     background-color: rgb(19, 119, 201);
     color: rgba(255, 255, 255, 0.9);
 }
-header > a{
-    color:rgba(255, 255, 255, 0.9);
+
+header > a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: bold;
 }
-a:hover{
+
+header > a:hover {
     color: white;
 }
-button{
-    padding: 8px;
-    border-radius:5px;
+
+/* Botões */
+button {
+    padding: 8px 12px;
+    border-radius: 5px;
     border: none;
     color: white;
     background-color: rgb(19, 119, 201);
@@ -27,66 +42,80 @@ button{
     font-weight: 500;
     margin-bottom: 10px;
 }
-button:hover{
+
+button:hover {
     cursor: pointer;
     background-color: rgb(8, 97, 170);
 }
 
-.tabela{
-    width: 100%; /* A tabela ocupa toda a largura disponível */
-  border-collapse: collapse; /* Remove espaços entre as bordas */
-  margin: 20px 0; /* Adiciona espaço acima e abaixo da tabela */
-  font-size: 16px; /* Define um tamanho de fonte legível */
-  text-align: left; /* Alinha o texto à esquerda */
+/* Tabelas responsivas */
+.tabela {
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    border-collapse: collapse; /* Remove espaços entre bordas */
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: left;
 }
-.tabela th, td{
-  border: 1px solid #ddd;
-  padding: 8px;
-  letter-spacing: normal;
+
+.tabela th, 
+.tabela td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
-.tabela th{
-    background-color: #16a2d1; /* Fundo azul claro */
-    color: #ffffff; /* Texto branco */
-    text-transform: uppercase; /* Letras maiúsculas */
-    font-weight: bold; /* Texto em negrito */
+
+.tabela th {
+    background-color: #16a2d1;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
 }
-h2{
+
+.tabelaCategorias {
+    width: 100%; /* Adiciona rolagem horizontal */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2 {
     color: rgb(83, 83, 83);
     padding: 10px;
 }
-/* Estilo do formulário */
+
+/* Formulários */
 form {
-    width: 500px;
-    padding: 20px; /* Adiciona espaçamento interno */
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
     background-color: white;
-    margin: 20px; /* Centraliza o formulário horizontalmente */
+    margin: 20px auto; /* Centraliza o formulário */
     border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para destacar o formulário */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Organiza os elementos em coluna */
-    gap: 15px; /* Espaçamento entre os elementos */
+    flex-direction: column;
+    gap: 15px;
 }
 
-/* Estilo dos rótulos */
 label {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* Estilo dos campos de entrada */
-input, textarea {
+input, 
+textarea, 
+select {
     padding: 10px;
-    width: calc(100% - 20px); /* Ocupa a largura do formulário menos o padding */
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    margin-top: 5px;
 }
 
-/* Espaçamento adicional para o botão */
 form > button {
-    align-self: center; /* Alinha o botão à esquerda */
+    align-self: center;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -100,28 +129,53 @@ form > button:hover {
     background-color: #0056b3;
 }
 
-/* Estilo do botão fechar */
+/* Botão fechar */
 #fechar {
-    align-self: center; /* Centraliza o botão fechar */
-    margin-bottom: 0;
+    align-self: flex-end;
     background-color: transparent;
-    color: white;
-    padding: 10px;
+    color: #333;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin-left: 50%;
-    background-color: transparent;
+    font-size: 16px;
+    margin-bottom: -10px;
 }
 
 #fechar:hover {
-    background-color: #e04d51;
+    color: #e04d51;
 }
 
-.tabelaCategorias{
-    width:50%;
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    header {
+        flex-direction: column; /* Torna o header vertical */
+        text-align: center;
+    }
+
+    .tabelaCategorias {
+        padding: 5px;
+    }
+
+    form {
+        width: 100%; /* Formulário ocupa toda a largura disponível */
+    }
+
+    .tabela {
+        font-size: 14px; /* Reduz o tamanho da fonte */
+    }
 }
-select{
-    margin-left: 5px;
-    padding: 6px;
+
+@media (max-width: 480px) {
+    button {
+        font-size: 12px; /* Botões menores em telas pequenas */
+        padding: 6px 10px;
+    }
+
+    .tabela th, 
+    .tabela td {
+        font-size: 12px; /* Texto menor para colunas */
+    }
 }

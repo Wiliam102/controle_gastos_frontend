@@ -1,29 +1,34 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 
-const TableCategorias = ({ onAdd }) => {
-  const [data,setData] = useState([])
+const TableCategorias = forwardRef((props, ref) => {
+  const [data, setData] = useState([]);
 
-  const fetchCategorias = async ()=>{
-    try{
+  // Função para buscar as categorias da API
+  const fetchCategorias = async () => {
+    try {
       const response = await fetch("http://localhost:8080/category/findall");
-      if(!response.ok){
-        throw new Error("Erro ao buscar categoria");
+      if (!response.ok) {
+        throw new Error("Erro ao buscar categorias");
       }
       const result = await response.json();
       setData(result);
-
-    }catch(error){
+    } catch (error) {
       console.error("Erro:", error);
-
     }
   };
 
-  useEffect(()=>{
-    fetchCategorias();
-  },[])
+  // Expondo a função fetchCategorias para o componente pai
+  useImperativeHandle(ref, () => ({
+    fetchCategorias,
+  }));
+
+  useEffect(() => {
+    fetchCategorias(); // Busca inicial ao montar o componente
+  }, []);
+
   return (
     <div>
-      <table className="tabela tabelaCategorias">
+      <table className="tabela tabelaCategorias" style={{width:"50%"}}>
         <thead>
           <tr>
             <th>ID</th>
@@ -41,6 +46,7 @@ const TableCategorias = ({ onAdd }) => {
       </table>
     </div>
   );
-};
+});
 
 export default TableCategorias;
+
